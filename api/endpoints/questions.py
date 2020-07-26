@@ -27,7 +27,9 @@ async def post_question(request: Request) -> UJSONResponse:
     user = await User.create(**asdict(user_data))
 
     question_data = QuestionInput(payload.get("question"), user.id)
-    await Question.create(**asdict(question_data))
+    question = await Question.create(**asdict(question_data))
+    payload["id"] = str(question.id)
+    payload["user_id"] = str(user.id)
 
     return UJSONResponse(payload, status_code=HTTP_201_CREATED)
 
