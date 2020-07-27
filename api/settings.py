@@ -16,6 +16,13 @@ SECRET = config("SECRET", cast=Secret, default=token_urlsafe(10))
 DB_URL = config("DB_URL", cast=str, default="sqlite://:memory:")
 GENERATE_SCHEMAS = config("GENERATE_SCHEMAS", cast=bool, default=True)
 
+SSL_PORT = config("SSL_PORT", cast=int, default=465)
+SMTP_PASSWORD = config("SMTP_PASSWORD", cast=Secret)
+SENDER_EMAIL = config("SENDER_EMAIL", cast=str)
+SLEEP_TIME_IN_SECONDS_BEFORE_SEND_EMAIL = config(
+    "SLEEP_TIME_IN_SECONDS_BEFORE_SEND_EMAIL", cast=int, default=60
+)
+
 # The Sentry DSN is a unique identifier for our app when connecting to Sentry
 # See https://docs.sentry.io/platforms/python/#connecting-the-sdk-to-sentry
 SENTRY_DSN = config("SENTRY_DSN", cast=str, default="")
