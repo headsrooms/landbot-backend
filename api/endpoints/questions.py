@@ -1,11 +1,15 @@
+import os
 from dataclasses import asdict
 
+from starlette.background import BackgroundTask
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import UJSONResponse
 from starlette.routing import Route
 from starlette.status import HTTP_201_CREATED
 
+from api import settings
+from api.mailing import send_welcome_email
 from api.models import Question, User
 from api.schemas import UserInput, QuestionInput, QuestionResponse
 
@@ -31,7 +35,13 @@ async def post_question(request: Request) -> UJSONResponse:
     payload["id"] = str(question.id)
     payload["user_id"] = str(user.id)
 
-    return UJSONResponse(payload, status_code=HTTP_201_CREATED)
+    task = BackgroundTask(
+        send_welcome_email,
+        to_address=payload.get("email"),
+        username=f"{payload.get('name')} {payload.get('last_name')}",
+        bypass=os.getenv("CI") or settings.DEBUG
+    )
+    return UJSONResponse(payload, status_code=HTTP_201_CREATED, background=task)
 
 
 async def get_question(request: Request) -> UJSONResponse:
