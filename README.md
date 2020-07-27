@@ -15,6 +15,19 @@
     
 ## Run
 
+Firstly, rename the file `sample.env` to `.env` and fill in the following variables with the correct values
+if you want to send an email when someone post a question:
+
+- DEBUG=False
+- SENDER_EMAIL=<yoursender@email.com>
+- SMTP_PASSWORD=<yourmailpassword>
+
+By default, it will use sqlite in memory, if you want to use another database or sqlite file fill `DB_URL`.
+
+There are some other optional configurable variable, these are in settings.py.
+
+To run the server execute:
+
     poetry run uvicorn api.app:app --port 80 --env-file .env
     
 
