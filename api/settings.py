@@ -17,8 +17,8 @@ DB_URL = config("DB_URL", cast=str, default="sqlite://:memory:")
 GENERATE_SCHEMAS = config("GENERATE_SCHEMAS", cast=bool, default=True)
 
 SSL_PORT = config("SSL_PORT", cast=int, default=465)
-SMTP_PASSWORD = config("SMTP_PASSWORD", cast=Secret)
-SENDER_EMAIL = config("SENDER_EMAIL", cast=str)
+SMTP_PASSWORD = config("SMTP_PASSWORD", cast=Secret, default="bad")
+SENDER_EMAIL = config("SENDER_EMAIL", cast=str, default="badmail@bad.com")
 SLEEP_TIME_IN_SECONDS_BEFORE_SEND_EMAIL = config(
     "SLEEP_TIME_IN_SECONDS_BEFORE_SEND_EMAIL", cast=int, default=60
 )
