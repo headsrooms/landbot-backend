@@ -1,6 +1,7 @@
 # landbot-test-bot
 
 
+![test](https://github.com/kingoodie/landbot-backend/workflows/test/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/kingoodie/landbot-backend/branch/master/graph/badge.svg)](https://codecov.io/gh/kingoodie/landbot-backend)
 [![Maintainability](https://api.codeclimate.com/v1/badges/21efa0909c8c43b8567d/maintainability)](https://codeclimate.com/github/kingoodie/landbot-backend/maintainability)
 
