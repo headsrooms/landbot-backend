@@ -28,7 +28,9 @@ async def post_question(request: Request) -> UJSONResponse:
         payload.get("email"),
         payload.get("phone"),
     )
-    user = await User.create(**asdict(user_data))
+    defaults = asdict(user_data)
+    del defaults["email"]
+    user, created = await User.get_or_create(email=user_data.email, defaults=defaults)
 
     question_data = QuestionInput(payload.get("question"), user.id)
     question = await Question.create(**asdict(question_data))
