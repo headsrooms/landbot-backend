@@ -24,7 +24,7 @@ if you want to send an email when someone post a question:
 
 By default, it will use sqlite in memory, if you want to use another database or sqlite file fill `DB_URL`.
 
-There are some other optional configurable variable, these are in settings.py.
+There are some other optional configurable variable, find their names in settings.py. You can change default values too.
 
 To run the server execute:
 
